@@ -44,10 +44,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: resume-${{ github.ref_name }}
+          release_name: Resume from ${{ github.event.repository.updated_at}} - ${{ github.ref_name }}
           body: |
-            Resume from ${{ github.event.repository.updated_at}}
+            Resume from updating  ${{ github.ref_name }} on ${{ github.event.repository.updated_at}}
           draft: false
           prerelease: false
       - name: Upload PDF Release Asset
