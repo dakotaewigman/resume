@@ -1,0 +1,33 @@
+name: Build and publish resume
+run-name: Build and publish resume by @${{ github.actor }}
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/build.yaml
+      - "fonts/**.*"
+      - "**.tex"
+      - "**.cls"
+      - "**.sty"
+
+jobs:
+  issue_voucher:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out this updates
+        uses: actions/checkout@v3
+
+      - name: Compiling resume
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: resume.tex
+          compiler: xelatex
+          
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-resume
+          path: resume.pdf
+          retention-days: 5

@@ -7,10 +7,6 @@
 	"settings": {
 		"latex-workshop.latex.autoBuild.run": "onFileChange",
 		"latex-workshop.latex.build.forceRecipeUsage": false,
-		"latex-workshop.latex.magic.args": [
-			"-output-directory=./out",
-			"%DOC%"
-		  ]
 	},
 	"extensions": {
 		"recommendations": [
