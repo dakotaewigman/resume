@@ -18,9 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set current date as env variable
-        run: echo "NOW=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
-      - name: OUT
-        run: echo ${{ env.NOW }}
+        run: echo "NOW=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
         
       - name: Checking out this updates
         uses: actions/checkout@v3
@@ -37,7 +35,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: resume-${{ github.ref_name }}-${{ env.NOW }}
+          tag_name: resume-${{ env.NOW }}-${{ github.run_id }}
           release_name: Resume from ${{ github.event.repository.updated_at}} - ${{ github.ref_name }}
           body: |
             Resume from updating  ${{ github.ref_name }} on ${{ github.event.repository.updated_at}}
